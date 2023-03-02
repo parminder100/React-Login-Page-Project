@@ -1,0 +1,25 @@
+.header-content {
+    background-color: #46b1ed;
+    padding: 10px;
+    box-shadow: 3px -5px 4px 6px #888888;
+    .navbar-content{
+        display: flex;
+        align-items: baseline;
+    }
+    .col-sm-6{
+        .logo-image{
+            width: 50px;
+        }
+    }
+    .col-sm-6{
+        .navbar-items{
+            display: flex;
+            list-style-type: none;
+            gap: 30px;
+        }
+        .navbar-items li:hover{
+            background-color: #5a8fe4;
+            cursor: pointer;
+        }
+    }
+}

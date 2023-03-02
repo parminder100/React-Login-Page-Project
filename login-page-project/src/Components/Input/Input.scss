@@ -1,0 +1,98 @@
+body{
+    background-color: lightgray !important;
+}
+.main-container{
+    margin-top: 50px;
+}
+.container{
+    .row{
+        .col-sm-6{
+            .login-banner-image{
+                width: 100%;
+                height: 600px;
+            }
+        }
+        .col-sm-6{
+            .firstname-input{
+                border: none;
+                border-bottom: 1px solid black;
+                width: 100%;
+                border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+                border-radius: 8px;
+                border-width: 2px;
+                margin-bottom: 15px;
+            }
+            input:focus-visible{
+                outline: none;
+            }
+        }
+        .right-col{
+            background-color: white;
+            padding:80px;
+            width: 40% !important;
+            .form-heading{
+                margin-bottom: 20px;
+            }
+            .submit-btn{
+                width: 100%;
+                background-image: linear-gradient(90deg, darkblue, darkorchid);
+                color: #ffffff;
+                border-image: linear-gradient(90deg, darkblue, darkorchid) 1;
+                padding: 5px;
+            }
+        }
+        .left-col{
+            width: 60% !important;
+            padding-right: 0px;
+        }
+        .social-media-description{
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            color: #888383;
+        }
+        .twitter-btn{
+            width: 100%;
+            background-image: linear-gradient(90deg, #0f8ce4, #6daaea);
+            color: #ffffff;
+            border-image: linear-gradient(90deg, #0f8ce4, #6daaea) 1;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .facebook-btn{
+            width: 100%;
+            background-image: linear-gradient(90deg, #1616ef, #5e61e2);
+            color: #ffffff;
+            border-image: linear-gradient(90deg, #1616ef, #5e61e2) 1;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    }
+}
+.user-data{
+    margin-top: 30px;
+}
+.user-data-items{
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    padding:20px;
+    border-radius: 10px;
+    font-weight: 600;
+    background-color: cornflowerblue;
+}
+p{
+    margin:0px;
+}
+.display-error{
+    font-weight: 600;
+    color:#ff0000;
+    margin-bottom: 10px;
+}
