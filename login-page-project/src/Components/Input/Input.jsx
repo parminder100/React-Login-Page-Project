@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import "../Input/Input.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import loginBanner from "../../Assets/img/loginBanner.png";
@@ -13,7 +13,7 @@ const Input = () => {
   });
   const [displayUserData, setDisplayUserData] = useState(false);
   const [formerror, setFormError] = useState(userRegistration);
-  const [submitted, setSubmitted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -24,15 +24,20 @@ const Input = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newrecord = { ...userRegistration };
-    setSubmitted(true);
-    if(submitted === true){
-        console.log("hello")
-        setDisplayUserData(true);
-        setRecord([...record, newrecord]);
-    }
-    else{
-        console.log("world")
-        setFormError(validate(userRegistration));
+    localStorage.setItem("form", JSON.stringify(newrecord));
+    // const isFormValid = validate(userRegistration);
+
+    if (
+      userRegistration.firstname.length === 0 ||
+      userRegistration.email.length === 0 ||
+      userRegistration.password.length === 0
+    ) {
+      console.log("world");
+      setFormError(validate(userRegistration));
+    } else {
+      console.log("hello");
+      setDisplayUserData(true);
+      setRecord([...record, newrecord]);
     }
     setUserRegistration({ firstname: "", email: "", password: "" });
   };
@@ -51,9 +56,15 @@ const Input = () => {
     return errors;
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem("form");
+    setIsLoggedIn(true);
+  };
+
   return (
     <>
-        {!displayUserData ? (<div className="container">
+      {!displayUserData || isLoggedIn ? (
+        <div className="container">
           <div>
             <div className="row main-container">
               <div className="col-sm-6 left-col">
@@ -75,7 +86,11 @@ const Input = () => {
                       onChange={handleChange}
                       className="firstname-input"
                     />
-                    <p className="display-error">{formerror.firstname}</p>
+                    {formerror && userRegistration.firstname.length === 0 ? (
+                      <p className="display-error">{formerror.firstname}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div>
                     <input
@@ -86,7 +101,11 @@ const Input = () => {
                       onChange={handleChange}
                       className="firstname-input"
                     />
-                    <p className="display-error">{formerror.email}</p>
+                    {formerror && userRegistration.email.length === 0 ? (
+                      <p className="display-error">{formerror.email}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div>
                     <input
@@ -97,7 +116,11 @@ const Input = () => {
                       onChange={handleChange}
                       className="firstname-input"
                     />
-                    <p className="display-error">{formerror.password}</p>
+                    {formerror && userRegistration.password.length === 0 ? (
+                      <p className="display-error">{formerror.password}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <button className="submit-btn">Submit</button>
                   <p className="social-media-description">
@@ -113,8 +136,9 @@ const Input = () => {
               </div>
             </div>
           </div>
-        </div>):
-        (<div>
+        </div>
+      ) : (
+        <div>
           {record.map((e) => {
             return (
               <>
@@ -124,12 +148,16 @@ const Input = () => {
                     <p>Welcome {e.firstname}</p>
                     <p>Your Email id is: {e.email}</p>
                     <p>Your Password is: {e.password}</p>
+                    <button className="logout-btn mt-3" onClick={logoutHandler}>
+                      Logout
+                    </button>
                   </div>
                 </div>
               </>
             );
           })}
-        </div>)}
+        </div>
+      )}
     </>
   );
 };

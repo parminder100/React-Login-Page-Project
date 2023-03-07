@@ -1,7 +1,5 @@
 import Pages from './Components/Routes/Routes';
 
-
-
 function App() {
   return (
       <>
